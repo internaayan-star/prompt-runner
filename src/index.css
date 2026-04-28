@@ -862,3 +862,11 @@ html.lenis, html.lenis body {
   from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* Emerald gradient utility for text */
+.emerald-gradient-text {
+  background: linear-gradient(135deg, #86efac 0%, #34d399 40%, #10b981 70%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
