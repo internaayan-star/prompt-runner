@@ -7,7 +7,102 @@ import {
   BarChart, LineChart, PieChart, Cloud, CheckSquare,
 } from 'lucide-react';
 import PageLayout from '@/components/PageLayout';
-import Hero from '@/components/ui/animated-shader-hero';
+
+const SPACE = "'Space Grotesk', sans-serif";
+const PLAYFAIR = "'Playfair Display', serif";
+const DM = "'DM Sans', sans-serif";
+const APPLY_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScf9cywkF4ygMmKM6u3A42fqhrvv9lKsVgGomo_HV-ssvZ9HQ/viewform?usp=header';
+
+function StaggerCharsEco({ text, baseDelay, step = 0.025, italic = false, color, gradient = false }: { text: string; baseDelay: number; step?: number; italic?: boolean; color?: string; gradient?: boolean }) {
+  return (
+    <span style={{ display: 'inline-block', fontFamily: italic ? PLAYFAIR : SPACE, fontStyle: italic ? 'italic' : 'normal', color, ...(gradient ? { background: 'linear-gradient(135deg,#86efac,#34d399,#10b981)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' } : {}) }}>
+      {Array.from(text).map((ch, i) => (
+        <motion.span key={i} initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: baseDelay + i * step, ease: [0.16, 1, 0.3, 1] }} style={{ display: 'inline-block', whiteSpace: 'pre' }}>
+          {ch}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
+
+const HERO_STATS = [
+  { v: '22+', l: 'Services' },
+  { v: '3', l: 'Verticals' },
+  { v: '₹12Cr+', l: 'Funding' },
+  { v: '100%', l: 'Free for Cohort' },
+];
+
+function EcosystemHero() {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: '#080808' }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(34,197,94,0.06), transparent)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, transparent 60%, #080808 100%)' }} />
+
+      <div className="relative max-w-6xl mx-auto px-6 pt-36 pb-24 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }}
+          className="uppercase"
+          style={{ fontFamily: DM, fontSize: 10, letterSpacing: '0.28em', color: 'rgba(255,255,255,0.35)' }}
+        >
+          RCIIF Ecosystem — Kharghar, Navi Mumbai
+        </motion.div>
+
+        <h1 className="mt-8" style={{ fontFamily: SPACE, fontWeight: 700, fontSize: 'clamp(3.5rem, 9vw, 8rem)', letterSpacing: '-0.04em', lineHeight: 1, color: '#fff' }}>
+          <span className="block"><StaggerCharsEco text="Everything" baseDelay={0.2} step={0.02} /></span>
+          <span className="block mt-2">
+            <StaggerCharsEco text="Under" baseDelay={0.55} step={0.03} />
+            <StaggerCharsEco text=" One Roof" baseDelay={0.55 + 5 * 0.03} step={0.03} italic gradient />
+          </span>
+        </h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 1.0 }}
+          className="mx-auto"
+          style={{ fontFamily: DM, fontSize: 15, color: 'rgba(255,255,255,0.55)', maxWidth: '50ch', lineHeight: 1.8, marginTop: 24 }}
+        >
+          From ideation to exit — end-to-end support for startups, institutions, and investors. 22+ services. 3 verticals. One curated platform.
+        </motion.p>
+
+        <div className="flex gap-8 md:gap-16 justify-center mt-10 flex-wrap">
+          {HERO_STATS.map((s, i) => (
+            <motion.div
+              key={s.l}
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.1 + i * 0.08 }}
+              className="relative px-2"
+            >
+              <div style={{ fontFamily: SPACE, fontWeight: 700, color: '#fff', fontSize: 'clamp(2rem, 4vw, 3rem)', letterSpacing: '-0.02em', lineHeight: 1 }}>{s.v}</div>
+              <div className="uppercase mt-2" style={{ fontFamily: DM, fontSize: 10, letterSpacing: '0.2em', color: '#34d399' }}>{s.l}</div>
+              {i < HERO_STATS.length - 1 && (
+                <div className="hidden md:block absolute top-1/2 -right-6 md:-right-8 -translate-y-1/2" style={{ width: 1, height: 40, background: 'linear-gradient(to bottom, transparent, rgba(52,211,153,0.4), transparent)' }} />
+              )}
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 1.4 }}
+          className="flex flex-wrap gap-4 justify-center mt-10"
+        >
+          <button
+            onClick={() => window.open(APPLY_URL, '_blank')}
+            className="bg-emerald-500 hover:bg-emerald-400 text-black rounded-xl transition-colors"
+            style={{ fontFamily: DM, fontWeight: 700, padding: '16px 32px', fontSize: 15 }}
+          >
+            Apply as Startup →
+          </button>
+          <a
+            href="/contact/partner"
+            className="bg-white/[0.06] border border-white/20 text-white backdrop-blur-sm rounded-xl hover:bg-white/[0.10] transition-colors inline-flex items-center"
+            style={{ fontFamily: DM, fontWeight: 600, padding: '16px 32px', fontSize: 15, textDecoration: 'none' }}
+          >
+            Become a Partner
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
 
 /* ── Animated counter ── */
 function useCountUp(target: number, duration = 1600) {
@@ -266,22 +361,7 @@ export default function Ecosystem() {
       title="Ecosystem"
       description="RCIIF's full-stack startup ecosystem — services for startups, institutions, and investors."
     >
-      {/* 1 — Animated shader hero (dark, green accents) */}
-      <Hero
-        trustBadge={{ icon: '✦', text: 'Full-Stack Startup Ecosystem · Kharghar, Navi Mumbai' }}
-        headline={{ line1: 'Everything Under', line2: 'One Roof' }}
-        subtitle="From ideation to exit — RCIIF provides end-to-end support for startups, institutions, and investors. 22+ services, 3 verticals, one curated platform."
-        buttons={{
-          primary: {
-            text: 'Apply as Startup',
-            onClick: () => window.open('https://docs.google.com/forms/d/e/1FAIpQLScf9cywkF4ygMmKM6u3A42fqhrvv9lKsVgGomo_HV-ssvZ9HQ/viewform', '_blank'),
-          },
-          secondary: {
-            text: 'Become a Partner',
-            onClick: () => { window.location.href = '/contact/partner'; },
-          },
-        }}
-      />
+      <EcosystemHero />
 
       <div className="bg-white force-light-bg [&_section]:!bg-white">
         {/* 2 — Stats strip (force dark) */}
