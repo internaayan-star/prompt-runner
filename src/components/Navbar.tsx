@@ -11,6 +11,33 @@ const NAV_LINKS = [
   { label: 'Board', href: '/board' },
 ];
 
+function ScrollProgress() {
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const el = document.documentElement;
+      setWidth((el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        height: '2px',
+        width: width + '%',
+        background: 'linear-gradient(90deg, var(--gold), #34d399)',
+        zIndex: 99,
+        transition: 'width 0.1s linear',
+        pointerEvents: 'none',
+      }}
+    />
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -32,7 +59,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // On homepage, wait for hero reveal event before showing nav
   useEffect(() => {
     if (!isHome) {
       setRevealed(true);
@@ -40,7 +66,6 @@ export default function Navbar() {
     }
     const handler = () => setRevealed(true);
     window.addEventListener('hero-reveal-done', handler);
-    // Fallback: show after 3s in case event never fires
     const fallback = setTimeout(() => setRevealed(true), 3000);
     return () => {
       window.removeEventListener('hero-reveal-done', handler);
@@ -53,193 +78,145 @@ export default function Navbar() {
     return location.pathname.startsWith(href);
   };
 
-  const showTransparent = isHome && !scrolled;
-
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-      style={{
-        ...(!showTransparent ? {
-          background: 'rgba(253,251,247,0.96)',
-          backdropFilter: 'blur(24px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-          borderBottom: '1px solid var(--border)',
-        } : undefined),
-        opacity: revealed ? 1 : 0,
-        transform: revealed ? 'translateY(0)' : 'translateY(-8px)',
-        transition: 'opacity 0.5s ease, transform 0.5s ease, background 0.5s ease',
-      }}
-    >
-      <div className="max-w-[1100px] mx-auto px-6 md:px-20 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group py-3 no-underline">
-          <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-300 group-hover:scale-105"
-            style={{
-              background: 'linear-gradient(135deg, var(--gold-bg2), var(--gold-bg))',
-              borderColor: 'var(--gold-border)',
-              boxShadow: '0 4px 12px -4px rgba(184,136,44,0.25)',
-            }}
-          >
-            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.15rem', color: 'var(--gold)', fontWeight: 500 }}>R</span>
-          </div>
-          <div className="flex flex-col leading-none">
-            <span
+    <>
+      <ScrollProgress />
+      <nav
+        className="fixed top-0 left-0 right-0 z-50"
+        style={{
+          background: scrolled ? 'rgba(8,8,8,0.88)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(28px) saturate(180%)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(28px) saturate(180%)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : 'none',
+          opacity: revealed ? 1 : 0,
+          transform: revealed ? 'translateY(0)' : 'translateY(-8px)',
+          transition: 'opacity 0.5s ease, transform 0.5s ease, background 0.5s ease, backdrop-filter 0.5s ease',
+        }}
+      >
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', padding: '14px 0' }}>
+            <div
               style={{
-                fontFamily: "'Outfit', sans-serif",
-                fontWeight: 600,
-                fontSize: '16px',
-                color: showTransparent ? '#FDFBF7' : 'var(--ink)',
-                textDecoration: 'none',
-                letterSpacing: '0.02em',
+                width: '36px',
+                height: '36px',
+                borderRadius: '9px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'linear-gradient(135deg, rgba(184,136,44,0.18), rgba(184,136,44,0.06))',
+                border: '1px solid rgba(184,136,44,0.3)',
+                boxShadow: '0 4px 16px -4px rgba(184,136,44,0.22)',
+                transition: 'transform 0.3s ease',
               }}
             >
-              RCIIF
-            </span>
-            <span
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '7px',
-                letterSpacing: '0.22em',
-                textTransform: 'uppercase',
-                color: showTransparent ? 'rgba(253,251,247,0.55)' : 'var(--ink-4)',
-                marginTop: '3px',
-              }}
-            >
-              Est. 2022
-            </span>
-          </div>
-        </Link>
+              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.05rem', color: 'var(--gold)', fontWeight: 500 }}>R</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
+              <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 600, fontSize: '15px', color: '#FDFBF7', letterSpacing: '0.02em' }}>RCIIF</span>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7px', letterSpacing: '0.18em', color: 'rgba(253,251,247,0.35)', textTransform: 'uppercase', marginTop: '2px' }}>
+                Incubation · Kharghar
+              </span>
+            </div>
+          </Link>
 
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-1">
-          {NAV_LINKS.map((link) => (
+          <div className="hidden md:flex items-center gap-6">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '9px',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: isActive(link.href) ? '#34d399' : 'rgba(253,251,247,0.5)',
+                  textDecoration: 'none',
+                  borderBottom: isActive(link.href) ? '2px solid #34d399' : '2px solid transparent',
+                  paddingBottom: '3px',
+                  transition: 'color 0.2s ease, border-color 0.2s ease',
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
             <Link
-              key={link.href}
-              to={link.href}
-              className="relative px-4 py-5 group transition-colors no-underline"
+              to="/maverick/apply"
               style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: '9px',
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
-                textDecoration: 'none',
                 fontWeight: 500,
-                color: isActive(link.href)
-                  ? 'var(--gold)'
-                  : (showTransparent ? 'rgba(253,251,247,0.7)' : 'var(--ink-3)'),
+                textDecoration: 'none',
+                background: 'var(--gold)',
+                color: '#0C0B09',
+                padding: '9px 18px',
+                borderRadius: '8px',
+                transition: 'background 0.2s ease, transform 0.2s ease',
+                display: 'inline-block',
               }}
             >
-              {link.label}
-              {/* Hover underline */}
-              <span
-                className="absolute left-1/2 -translate-x-1/2 h-px transition-all duration-300 ease-out group-hover:w-[60%]"
-                style={{
-                  bottom: '12px',
-                  width: '0%',
-                  background: 'var(--gold)',
-                  opacity: 0.5,
-                }}
-              />
-              {/* Active dot */}
-              {isActive(link.href) && (
-                <span
-                  aria-hidden
-                  className="absolute left-1/2 -translate-x-1/2 rounded-full"
-                  style={{
-                    bottom: '8px',
-                    width: '4px',
-                    height: '4px',
-                    background: 'var(--gold)',
-                    boxShadow: '0 0 8px rgba(184,136,44,0.6)',
-                  }}
-                />
-              )}
+              Apply →
             </Link>
-          ))}
+          </div>
+
+          <button className="md:hidden" onClick={() => setMobileOpen((o) => !o)} style={{ background: 'none', border: 'none', color: '#FDFBF7', padding: '8px' }}>
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
 
-        {/* CTA */}
-        <Link
-          to="/maverick/apply"
-          className="hidden lg:inline-flex items-center gap-2 no-underline group"
-          style={{
-            background: 'var(--gold)',
-            color: 'var(--bg)',
-            padding: '11px 22px',
-            borderRadius: '999px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '9px',
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            fontWeight: 600,
-            textDecoration: 'none',
-            boxShadow: '0 6px 18px -6px rgba(184,136,44,0.5)',
-            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-          }}
-        >
-          Apply
-          <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-        </Link>
-
-        {/* Mobile Toggle */}
-        <button
-          className="lg:hidden p-2 rounded-lg"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          style={{ color: showTransparent ? '#FDFBF7' : 'var(--ink)' }}
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div
-          className="lg:hidden absolute top-full left-0 right-0 px-4 py-4 border-b"
-          style={{
-            background: 'rgba(12,11,9,0.97)',
-            backdropFilter: 'blur(28px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(28px) saturate(180%)',
-            borderColor: 'rgba(184,136,44,0.18)',
-            animation: 'slideDown 0.3s ease-out',
-          }}
-        >
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              onClick={() => setMobileOpen(false)}
-              className="block w-full px-4 py-3 rounded-xl transition-colors no-underline"
-              style={{
-                fontFamily: "'Outfit', sans-serif",
-                fontSize: '15px',
-                textDecoration: 'none',
-                color: isActive(link.href) ? 'var(--gold)' : 'rgba(253,251,247,0.7)',
-                background: isActive(link.href) ? 'rgba(184,136,44,0.08)' : 'transparent',
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            to="/maverick/apply"
-            onClick={() => setMobileOpen(false)}
-            className="no-underline block text-center mt-3 py-3 rounded-xl"
+        {mobileOpen && (
+          <div
             style={{
-              background: 'var(--gold)',
-              color: 'var(--bg)',
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '10px',
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              fontWeight: 600,
-              textDecoration: 'none',
+              background: 'rgba(8,8,8,0.97)',
+              backdropFilter: 'blur(24px)',
+              borderTop: '1px solid rgba(255,255,255,0.07)',
+              padding: '20px 24px 28px',
+              animation: 'slideDown 0.22s ease forwards',
             }}
           >
-            Apply →
-          </Link>
-        </div>
-      )}
-    </nav>
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                onClick={() => setMobileOpen(false)}
+                style={{
+                  display: 'block',
+                  padding: '12px 0',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '10px',
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  color: isActive(link.href) ? '#34d399' : 'rgba(253,251,247,0.55)',
+                  textDecoration: 'none',
+                  borderBottom: '1px solid rgba(255,255,255,0.05)',
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              to="/maverick/apply"
+              onClick={() => setMobileOpen(false)}
+              style={{
+                display: 'inline-block',
+                marginTop: '16px',
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: '10px',
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                background: 'var(--gold)',
+                color: '#0C0B09',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                textDecoration: 'none',
+              }}
+            >
+              Apply →
+            </Link>
+          </div>
+        )}
+      </nav>
+    </>
   );
 }
