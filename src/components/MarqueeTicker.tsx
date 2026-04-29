@@ -1,50 +1,54 @@
-const items = [
-  'Rezonanz',
-  'EatPure',
-  'Kridinify Tech',
-  'NamanAngels',
-  'IndusInd Bank',
-  'Maverick Pont',
-  'Cohort 2026',
-  'DPIIT Recognised',
-  'Kharghar, Navi Mumbai',
-  '12+ Incubatees',
-  '₹12Cr+ Facilitated',
+const ITEMS_TOP = [
+  'DPIIT Recognised', '✦', 'Cohort 5 Open', '✦', '12+ Startups', '✦',
+  '₹12Cr+ Funding', '✦', 'Kharghar · Navi Mumbai', '✦', 'Maverick Pont', '✦',
+  'Apply Now', '✦', 'EatPure', '✦', 'Rezonanz', '✦', 'Kridinify Tech', '✦',
+];
+const ITEMS_BOT = [
+  'Innovation', '◆', 'Incubation', '◆', 'Infrastructure', '◆', 'Impact', '◆',
+  'Mentorship', '◆', 'Growth', '◆', 'Scale', '◆', 'Vision 2030', '◆',
+  'Community', '◆', 'Funding', '◆',
 ];
 
 export default function MarqueeTicker() {
-  const doubled = [...items, ...items];
-
   return (
-    <div
-      className="relative z-20 overflow-hidden border-y"
-      style={{
-        background: 'var(--ink)',
-        borderColor: 'rgba(253,251,247,0.08)',
-      }}
-    >
-      <div className="animate-scroll-left flex whitespace-nowrap py-3">
-        {doubled.map((item, i) => (
-          <span
-            key={i}
-            className="mx-6 inline-block"
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '10px',
-              textTransform: 'uppercase',
-              letterSpacing: '0.12em',
-              color: 'rgba(253,251,247,0.35)',
-            }}
-          >
-            {item}
+    <div className="relative overflow-hidden border-y" style={{ borderColor: 'rgba(184,136,44,0.14)', background: '#0a0a0a' }}>
+      <div className="marquee-track py-[11px] border-b" style={{ borderColor: 'rgba(184,136,44,0.07)' }}>
+        <div className="flex animate-marquee-left" style={{ width: 'max-content' }}>
+          {[...ITEMS_TOP, ...ITEMS_TOP].map((item, i) => (
             <span
-              className="ml-6"
-              style={{ color: 'var(--gold)', opacity: i % 2 === 0 ? 0.6 : 0.45 }}
+              key={i}
+              className="px-5 whitespace-nowrap"
+              style={{
+                fontFamily: item === '✦' ? 'serif' : "'JetBrains Mono', monospace",
+                fontSize: '9px',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: item === '✦' ? 'var(--gold)' : 'rgba(253,251,247,0.32)',
+              }}
             >
-              {i % 2 === 0 ? '·' : '✦'}
+              {item}
             </span>
-          </span>
-        ))}
+          ))}
+        </div>
+      </div>
+      <div className="marquee-track py-[11px]">
+        <div className="flex animate-marquee-right" style={{ width: 'max-content' }}>
+          {[...ITEMS_BOT, ...ITEMS_BOT].map((item, i) => (
+            <span
+              key={i}
+              className="px-5 whitespace-nowrap"
+              style={{
+                fontFamily: item === '◆' ? 'serif' : "'JetBrains Mono', monospace",
+                fontSize: '9px',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: item === '◆' ? '#34d399' : 'rgba(253,251,247,0.2)',
+              }}
+            >
+              {item}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -4,6 +4,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LenisProvider } from "@/context/LenisContext";
+import CustomCursor from "@/components/CustomCursor";
+import PageTransitionWrapper from "@/components/PageTransitionWrapper";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -31,31 +33,34 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <LenisProvider>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/home" element={<Navigate to="/" replace />} />
+        <CustomCursor />
+        <PageTransitionWrapper>
+          <LenisProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/home" element={<Navigate to="/" replace />} />
 
-            {/* About */}
-            <Route path="/about" element={<About />} />
+              {/* About */}
+              <Route path="/about" element={<About />} />
 
-            {/* Maverick Pont */}
-            <Route path="/maverick" element={<Maverick />} />
-            <Route path="/maverick/apply" element={<Apply />} />
-            <Route path="/maverick/investors" element={<Investors />} />
-            <Route path="/maverick/alumni" element={<Alumni />} />
-            <Route path="/maverick/alumni/:slug" element={<CaseStudy />} />
+              {/* Maverick Pont */}
+              <Route path="/maverick" element={<Maverick />} />
+              <Route path="/maverick/apply" element={<Apply />} />
+              <Route path="/maverick/investors" element={<Investors />} />
+              <Route path="/maverick/alumni" element={<Alumni />} />
+              <Route path="/maverick/alumni/:slug" element={<CaseStudy />} />
 
-            {/* Ecosystem */}
-            <Route path="/ecosystem" element={<Ecosystem />} />
+              {/* Ecosystem */}
+              <Route path="/ecosystem" element={<Ecosystem />} />
 
-            {/* Board */}
-            <Route path="/board" element={<Board />} />
+              {/* Board */}
+              <Route path="/board" element={<Board />} />
 
-            {/* Catch-all */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </LenisProvider>
+              {/* Catch-all */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </LenisProvider>
+        </PageTransitionWrapper>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

@@ -44,30 +44,47 @@ function StatCounter({
   index: number;
 }) {
   const value = useCounter(end, active);
-  const accent = index % 2 === 0 ? "#22c55e" : "#0a0a0a";
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={active ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      className="text-left rounded-xl bg-white/60"
-      style={{ borderTop: `2px solid ${accent}`, padding: "24px 20px" }}
+      className="text-left"
+      style={{
+        borderRadius: '16px',
+        background: '#FDFBF7',
+        border: '1px solid var(--border)',
+        borderTop: `3px solid ${index % 2 === 0 ? 'var(--gold)' : 'var(--forest)'}`,
+        padding: '28px 24px',
+        boxShadow: '0 4px 24px -8px rgba(12,11,9,0.07)',
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)';
+        (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px -12px rgba(12,11,9,0.12)';
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.transform = '';
+        (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 24px -8px rgba(12,11,9,0.07)';
+      }}
     >
       <div className="relative inline-block">
         {active && (
-          <span
-            aria-hidden
-            className="counter-pulse absolute inset-0"
-            style={{ animationDelay: `${delay}s` }}
-          />
+          <span aria-hidden className="counter-pulse absolute inset-0" style={{ animationDelay: `${delay}s` }} />
         )}
-        <div className="text-4xl md:text-5xl font-bold font-[Instrument_Serif] text-[#0a0a0a] relative">
+        <div
+          className="relative"
+          style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.025em', lineHeight: 1 }}
+        >
           {prefix}
           {value}
           {suffix}
         </div>
       </div>
-      <div className="text-xs md:text-sm font-[Instrument_Sans] text-[#0a0a0a]/55 uppercase tracking-widest mt-2">
+      <div
+        className="mt-2"
+        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-3)' }}
+      >
         {label}
       </div>
     </motion.div>
@@ -89,18 +106,16 @@ export default function IdentitySection() {
   }, []);
 
   return (
-    <section ref={ref} className="w-full py-20 md:py-28 px-4 bg-white overflow-hidden">
+    <section ref={ref} className="w-full py-20 md:py-28 px-4 bg-[#FDFBF7] overflow-hidden">
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left */}
           <div>
-            <span data-reveal data-delay="0" className="text-green-600 font-[Instrument_Sans] text-sm tracking-widest uppercase block">
-              Our Identity
+            <span data-reveal data-delay="0" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--gold)' }}>
+              By The Numbers
             </span>
-            <h2 data-reveal data-delay="100" className="text-4xl md:text-5xl lg:text-6xl font-bold font-[Instrument_Serif] text-[#0a0a0a] mt-2 mb-6 leading-[1.05]">
-              From Kharghar
-              <br />
-              to the World
+            <h2 data-reveal data-delay="100" className="mt-2 mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(2.2rem, 5vw, 4rem)', letterSpacing: '-0.025em', lineHeight: 1.05, color: 'var(--ink)' }}>
+              The Impact of <span className="gold-gradient-text">RCIIF</span>
             </h2>
             <p data-reveal data-delay="200" className="text-[#0a0a0a]/65 font-[Instrument_Sans] text-base md:text-lg leading-relaxed mb-8 max-w-xl">
               RCIIF is a DPIIT-recognised incubator under Rayat Shikshan Sanstha —
@@ -165,6 +180,35 @@ export default function IdentitySection() {
               <div className="mt-10 pt-6 border-t border-gray-100 text-[#0a0a0a]/55 font-[Instrument_Sans] text-xs tracking-widest uppercase">
                 Cohort 01 — Live · Cohort 02 — Open
               </div>
+            </div>
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '44px' }}>
+              {[
+                { emoji: '🏛️', text: 'DPIIT Recognised' },
+                { emoji: '⚡', text: 'Cohort 5 Open' },
+                { emoji: '🌱', text: '100% Free for Startups' },
+                { emoji: '📍', text: 'Kharghar, Navi Mumbai' },
+              ].map((b) => (
+                <div
+                  key={b.text}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '7px',
+                    padding: '8px 16px',
+                    borderRadius: '999px',
+                    background: '#fff',
+                    border: '1px solid var(--border)',
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: '8.5px',
+                    letterSpacing: '0.14em',
+                    color: 'var(--ink-3)',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  <span role="img">{b.emoji}</span>
+                  {b.text}
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
