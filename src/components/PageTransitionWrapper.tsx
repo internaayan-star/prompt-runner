@@ -1,28 +1,51 @@
-import { useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useRef, useCallback } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
+// Intercept internal link clicks to play transition before navigation
 export default function PageTransitionWrapper({ children }: { children: React.ReactNode }) {
-  const wipeRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  const navigate = useNavigate();
+  const isTransitioning = useRef(false);
+
+  const playTransition = useCallback((to: string) => {
+    const el = overlayRef.current;
+    if (!el || isTransitioning.current) return;
+    isTransitioning.current = true;
+    el.classList.add('active');
+
+    // Navigate at the midpoint (when screen is "squeezed" and invisible ~50%)
+    setTimeout(() => {
+      navigate(to);
+      window.scrollTo(0, 0);
+    }, 800);
+
+    // Remove animation class after full duration
+    setTimeout(() => {
+      el.classList.remove('active');
+      isTransitioning.current = false;
+    }, 1600);
+  }, [navigate]);
 
   useEffect(() => {
-    const el = wipeRef.current;
-    if (!el) return;
-    el.classList.remove('entering', 'leaving');
-    void el.offsetWidth;
-    el.classList.add('entering');
-    const t1 = window.setTimeout(() => {
-      el.classList.remove('entering');
-      el.classList.add('leaving');
-      const t2 = window.setTimeout(() => el.classList.remove('leaving'), 420);
-      return () => window.clearTimeout(t2);
-    }, 420);
-    return () => window.clearTimeout(t1);
-  }, [location.pathname]);
+    const handleClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement).closest('a');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:') || anchor.target === '_blank') return;
+      // Internal link
+      if (href !== location.pathname) {
+        e.preventDefault();
+        playTransition(href);
+      }
+    };
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [location.pathname, playTransition]);
 
   return (
     <>
-      <div ref={wipeRef} className="page-wipe" />
+      <div ref={overlayRef} className="page-transition-overlay" />
       {children}
     </>
   );

@@ -926,17 +926,60 @@ body.cursor-hover .cursor-ring {
 body.cursor-dark .cursor-dot { background: #34d399; }
 body.cursor-dark .cursor-ring { border-color: rgba(52,211,153,0.5); }
 
-/* Page wipe transition */
-.page-wipe {
+/* Page squish transition */
+.page-transition-overlay {
   position: fixed; inset: 0; z-index: 9000;
+  pointer-events: none;
   background: #080808;
-  transform: translateY(100%);
+  opacity: 0;
+}
+.page-transition-overlay.active {
+  animation: pageSquish 1.6s ease forwards;
+  pointer-events: all;
+}
+@keyframes pageSquish {
+  0%   { opacity: 1; transform: scale(1, 1); }
+  10%  { opacity: 1; transform: scale(1, 0.002); }
+  35%  { opacity: 1; transform: scale(0.2, 0.002); }
+  50%  { opacity: 0; transform: scale(0.2, 0.002); }
+  85%  { opacity: 1; transform: scale(1, 0.002); }
+  100% { opacity: 0; transform: scale(1, 1); }
+}
+
+/* Liquid glass effect */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
   pointer-events: none;
 }
-.page-wipe.entering { animation: wipeIn 0.42s cubic-bezier(0.16,1,0.3,1) forwards; }
-.page-wipe.leaving  { animation: wipeOut 0.42s cubic-bezier(0.7,0,0.84,0) forwards; }
-@keyframes wipeIn  { from { transform: translateY(100%); } to { transform: translateY(0%); } }
-@keyframes wipeOut { from { transform: translateY(0%); }   to { transform: translateY(-100%); } }
+
+/* Blur fade up animation */
+@keyframes blurFadeUp {
+  from { opacity: 0; filter: blur(20px); transform: translateY(40px); }
+  to   { opacity: 1; filter: blur(0);    transform: translateY(0); }
+}
+.animate-blur-fade-up {
+  opacity: 0;
+  animation: blurFadeUp 1s ease-out forwards;
+}
 
 /* Dual marquee */
 @keyframes marquee-left  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
