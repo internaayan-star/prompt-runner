@@ -4,7 +4,7 @@ import PageLayout from '@/components/PageLayout';
 import StatsMarquee from '@/components/maverick/StatsMarquee';
 import BuiltForSection from '@/components/maverick/BuiltForSection';
 import FounderNeedsSection from '@/components/maverick/FounderNeedsSection';
-import JourneySection from '@/components/maverick/JourneySection';
+import MaverickJourney from '@/components/maverick/MaverickJourney';
 import TestimonialsSection from '@/components/maverick/TestimonialsSection';
 import ApplyCTASection from '@/components/maverick/ApplyCTASection';
 
@@ -149,7 +149,7 @@ export default function Maverick() {
         <StatsMarquee />
         <BuiltForSection />
         <FounderNeedsSection />
-        <JourneySection />
+        <MaverickJourney />
         <TestimonialsSection />
         <ApplyCTASection />
       </div>
