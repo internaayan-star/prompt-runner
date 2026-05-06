@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LenisProvider } from "@/context/LenisContext";
 import CustomCursor from "@/components/CustomCursor";
 import PageTransitionWrapper from "@/components/PageTransitionWrapper";
+import TearRevealOverlay from "@/components/TearRevealOverlay";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -33,6 +34,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <TearRevealOverlay />
         <CustomCursor />
         <PageTransitionWrapper>
           <LenisProvider>
