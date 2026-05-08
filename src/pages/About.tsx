@@ -11,7 +11,7 @@ import IncubateesOrbit from '@/components/IncubateesOrbit';
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-white force-light-bg [&_section]:!bg-white">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <AboutHeroAnimated />
       <div id="about-intro">

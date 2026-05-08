@@ -38,6 +38,23 @@ function CinematicHero() {
       <div className="flex-1 flex flex-col justify-end px-4 sm:px-6 md:px-12 pb-8 md:pb-16" style={{ zIndex: 10 }}>
         <div className="flex flex-col md:flex-row items-end gap-8">
           <div className="flex-1">
+            {/* Badges row */}
+            <div className="animate-blur-fade-up flex flex-wrap gap-2 mb-5" style={{ animationDelay: '300ms' }}>
+              {[
+                { label: 'DPIIT Recognised', icon: '🏛️' },
+                { label: 'Cohort 6 Live', icon: '⚡' },
+                { label: '100% Free', icon: '🌱' },
+              ].map((b) => (
+                <span
+                  key={b.label}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-white/80 border border-white/15 backdrop-blur-md"
+                  style={{ fontSize: '11px', fontFamily: "'DM Sans', sans-serif", background: 'rgba(255,255,255,0.08)' }}
+                >
+                  <span>{b.icon}</span> {b.label}
+                </span>
+              ))}
+            </div>
+
             {/* Title */}
             <h1
               className="animate-blur-fade-up text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4 md:mb-6"
@@ -52,11 +69,26 @@ function CinematicHero() {
 
             {/* Description */}
             <p
-              className="animate-blur-fade-up text-base sm:text-lg md:text-xl text-gray-400 mb-6 md:mb-12 max-w-2xl"
+              className="animate-blur-fade-up text-base sm:text-lg md:text-xl text-gray-400 mb-4 max-w-2xl"
               style={{ animationDelay: '500ms' }}
             >
               Where startups scale.
             </p>
+
+            {/* Stats row */}
+            <div className="animate-blur-fade-up flex flex-wrap gap-6 md:gap-10 mb-8" style={{ animationDelay: '600ms' }}>
+              {[
+                { v: '12+', l: 'Incubatees' },
+                { v: '₹12Cr+', l: 'Funding' },
+                { v: '6', l: 'Cohorts' },
+                { v: '96%', l: 'Satisfaction' },
+              ].map((s) => (
+                <div key={s.l} className="flex flex-col">
+                  <span className="text-white text-2xl md:text-3xl font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '-0.02em' }}>{s.v}</span>
+                  <span className="text-white/40 text-[10px] uppercase tracking-widest mt-1" style={{ fontFamily: "'DM Sans', sans-serif" }}>{s.l}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

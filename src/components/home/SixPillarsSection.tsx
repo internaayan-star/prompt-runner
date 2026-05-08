@@ -116,40 +116,6 @@ export default function SixPillarsSection() {
                 {p.description}
               </p>
 
-              {/* Hover learn more link */}
-              <div
-                className="overflow-hidden transition-all duration-300"
-                style={{ maxHeight: 0 }}
-                onMouseEnter={(e) => (e.currentTarget.style.maxHeight = '28px')}
-                onMouseLeave={(e) => (e.currentTarget.style.maxHeight = '0')}
-              >
-                <span
-                  className="inline-flex items-center gap-1 mt-4"
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: '10px',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    color: '#16a34a',
-                  }}
-                >
-                  Learn more →
-                </span>
-              </div>
-              <div className="group-hover:opacity-100 opacity-0 transition-opacity duration-300 absolute inset-x-8 bottom-6">
-                <span
-                  className="inline-flex items-center gap-1"
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: '10px',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    color: '#16a34a',
-                  }}
-                >
-                  Learn more →
-                </span>
-              </div>
               <motion.div
                 className="h-0.5 bg-green-500 mt-6"
                 initial={{ width: 24 }}
