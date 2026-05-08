@@ -134,7 +134,7 @@ function StatCounter({ icon, value, label, suffix, delay, tooltip, isAnimatedSat
   delay: number; tooltip?: string; isAnimatedSatisfaction?: boolean
 }) {
   const countRef = useRef(null)
-  const isInView = useInView(countRef, { once: false })
+  const isInView = useInView(countRef, { once: true })
   const [hasAnimated, setHasAnimated] = useState(false)
   const [showTooltip, setShowTooltip] = useState(false)
   const [displayPct, setDisplayPct] = useState(0)
@@ -159,9 +159,6 @@ function StatCounter({ icon, value, label, suffix, delay, tooltip, isAnimatedSat
         }, step)
         return () => clearInterval(interval)
       }
-    } else if (!isInView && hasAnimated) {
-      springValue.set(0); setHasAnimated(false); setDisplayPct(0)
-    }
   }, [isInView, value, springValue, hasAnimated, isAnimatedSatisfaction])
 
   return (

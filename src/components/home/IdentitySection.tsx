@@ -69,9 +69,6 @@ function StatCounter({
       }}
     >
       <div className="relative inline-block">
-        {active && (
-          <span aria-hidden className="counter-pulse absolute inset-0" style={{ animationDelay: `${delay}s` }} />
-        )}
         <div
           className="relative"
           style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.025em', lineHeight: 1 }}

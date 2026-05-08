@@ -196,7 +196,7 @@ export function RCIIFStoryTimeline() {
   // End offset pulled in so the line completes when the LAST card (point 5) is in view
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
-    offset: ["start 0.75", "end 0.85"],
+    offset: ["start 0.85", "end 0.65"],
   })
   const progress = useSpring(scrollYProgress, { stiffness: 60, damping: 25, restDelta: 0.001 })
 

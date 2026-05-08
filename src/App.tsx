@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LenisProvider } from "@/context/LenisContext";
-import CustomCursor from "@/components/CustomCursor";
+
 import PageTransitionWrapper from "@/components/PageTransitionWrapper";
 import TearRevealOverlay from "@/components/TearRevealOverlay";
 import Index from "./pages/Index";
@@ -35,7 +35,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <TearRevealOverlay />
-        <CustomCursor />
+        
         <PageTransitionWrapper>
           <LenisProvider>
             <Routes>
