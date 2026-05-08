@@ -159,6 +159,7 @@ function StatCounter({ icon, value, label, suffix, delay, tooltip, isAnimatedSat
         }, step)
         return () => clearInterval(interval)
       }
+    }
   }, [isInView, value, springValue, hasAnimated, isAnimatedSatisfaction])
 
   return (
