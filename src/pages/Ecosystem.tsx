@@ -35,8 +35,15 @@ const HERO_STATS = [
 function EcosystemHero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: '#080808' }}>
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(34,197,94,0.06), transparent)' }} />
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, transparent 60%, #080808 100%)' }} />
+      {/* Hero background image */}
+      <img
+        src="/images/ecosystem-hero-bg.jpg"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover opacity-40"
+        width={1920}
+        height={1080}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#080808]" />
 
       <div className="relative max-w-6xl mx-auto px-6 pt-36 pb-24 text-center">
         <motion.div
@@ -252,31 +259,40 @@ function PersonaSection({ variant, align, eyebrow, title, description, ctaText, 
   );
 
   const cardsCol = (
-    <div data-stagger-parent data-reveal className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+    <div data-stagger-parent data-reveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {services.map((s) => {
         const Icon = s.Icon;
         return (
           <div
             key={s.title}
-            className={`p-5 rounded-2xl transition-all duration-300 ${
+            className={`relative p-8 rounded-2xl overflow-hidden cursor-default group transition-all duration-300 ${
               isDark
-                ? 'bg-white/[0.04] border border-white/10 hover:border-green-500/40 hover:bg-white/[0.06]'
-                : 'bg-white border border-black/5 hover:border-green-500/40 hover:shadow-[0_12px_32px_-12px_rgba(34,197,94,0.18)]'
+                ? 'bg-white/[0.04] border border-white/10 hover:border-green-500/40 hover:shadow-xl'
+                : 'bg-white border border-gray-200 hover:shadow-xl'
             }`}
           >
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${
-              isDark ? 'bg-green-500/10 border border-green-500/25' : 'bg-green-500/10 border border-green-500/20'
-            }`}>
-              <Icon size={18} className={isDark ? 'text-green-400' : 'text-green-600'} />
+            {/* Hover highlight overlay */}
+            <div
+              className={`absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 ${
+                isDark ? 'bg-green-500/[0.04]' : 'bg-green-50'
+              }`}
+            />
+            <div className="relative z-10">
+              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${
+                isDark ? 'bg-green-500/10 text-green-400' : 'bg-green-100 text-green-600'
+              } group-hover:scale-110 transition-transform duration-300`}>
+                <Icon size={28} />
+              </div>
+              <h3 className={`font-[Instrument_Serif] font-bold text-2xl mb-3 ${isDark ? 'text-white' : 'text-[#0a0a0a]'}`}>
+                {s.title}
+              </h3>
+              <p className={`font-[Instrument_Sans] text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-[#0a0a0a]/70'}`}>
+                {s.desc}
+              </p>
+              <div className={`w-8 h-0.5 mt-4 transition-all duration-300 group-hover:w-12 ${
+                isDark ? 'bg-green-500' : 'bg-green-500'
+              }`} />
             </div>
-            <h3 className={`font-[Instrument_Sans] font-semibold mb-1 ${isDark ? 'text-white' : 'text-[#0a0a0a]'}`}
-              style={{ fontSize: '14px', lineHeight: 1.3 }}>
-              {s.title}
-            </h3>
-            <p className={`font-[Instrument_Sans] ${isDark ? 'text-white/55' : 'text-[#0a0a0a]/55'}`}
-              style={{ fontSize: '12.5px', lineHeight: 1.6 }}>
-              {s.desc}
-            </p>
           </div>
         );
       })}
