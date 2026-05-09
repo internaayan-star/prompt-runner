@@ -4,11 +4,15 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const TEAM = [
-  { name: "Dinesh Israni",   role: "Leadership",     initials: "DI", color: "#22c55e" },
-  { name: "Deovrut Jadhav",  role: "Leadership",     initials: "DJ", color: "#059669" },
-  { name: "Roshani Shinde",  role: "Operations",     initials: "RS", color: "#10b981" },
-  { name: "Prasad Pawar",    role: "Programs",       initials: "PP", color: "#22c55e" },
-  { name: "Vidya Tandel",    role: "Administration", initials: "VT", color: "#059669" },
+  { name: "Dinesh Israni",   role: "Chief Executive Officer",     initials: "DI", color: "#22c55e", photo: "/images/team/team_photo_person_3.jpeg" },
+  { name: "Deovrut Jadhav",  role: "Chief Operating Officer",     initials: "DJ", color: "#059669", photo: "/images/team/team_photo_person_1.jpeg" },
+  { name: "Roshani Shinde",  role: "Community Strategy",          initials: "RS", color: "#10b981", photo: "/images/team/team_photo_roshani_shinde.jpeg" },
+  { name: "Prasad Pawar",    role: "Digital Marketing",           initials: "PP", color: "#22c55e", photo: "/images/team/team_photo_person_2.jpeg" },
+  { name: "Vidya Tandel",    role: "Accountant",                  initials: "VT", color: "#059669", photo: "/images/team/team_photo_person_4.jpeg" },
+  { name: "Team Member",     role: "Programs",                    initials: "TM", color: "#22c55e", photo: "/images/team/team_photo_person_5.jpeg" },
+  { name: "Team Member",     role: "Operations",                  initials: "TM", color: "#10b981", photo: "/images/team/team_photo_person_6.jpeg" },
+  { name: "Team Member",     role: "Outreach",                    initials: "TM", color: "#059669", photo: "/images/team/team_photo_person_7.jpeg" },
+  { name: "Team Member",     role: "Support",                     initials: "TM", color: "#22c55e", photo: "/images/team/team_photo_person_8.jpeg" },
 ];
 
 function TeamCard({ member, index }: { member: typeof TEAM[0]; index: number }) {
