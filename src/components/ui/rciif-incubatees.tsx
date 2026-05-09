@@ -2,18 +2,18 @@
 import { motion } from "framer-motion"
 
 const INCUBATEES = [
-  { name: "Rezonanz",     sector: "Healthcare Comms", initials: "RZ" },
-  { name: "Quaestio LLP", sector: "Research",         initials: "QL" },
-  { name: "Omegas",       sector: "FinTech",          initials: "OM" },
-  { name: "EatPure",      sector: "FMCG",             initials: "EP" },
-  { name: "Kampuram",     sector: "Digital Mktg",     initials: "KP" },
-  { name: "Dear Society", sector: "Legal",            initials: "DS" },
-  { name: "Nest Craft",   sector: "Digital Mktg",     initials: "NC" },
-  { name: "Kridinify",    sector: "AI Tech",          initials: "KR" },
-  { name: "Taiyo HR",     sector: "HR Tech",          initials: "TH" },
-  { name: "Omni Global",  sector: "FinTech",          initials: "OG" },
-  { name: "My Event",     sector: "Events",           initials: "ME" },
-  { name: "Tiden Tech",   sector: "IT Services",      initials: "TT" },
+  { name: "Rezonanz",                sector: "Healthcare Comms", logo: "/images/incubatees/rezonanz_logo.jpeg" },
+  { name: "Quaestio LLP",            sector: "Research",         logo: "/images/incubatees/quaeslio_logo.jpeg" },
+  { name: "Omegas Investments",      sector: "FinTech",          logo: "/images/incubatees/omegas_investments_logo.jpeg" },
+  { name: "EatPure",                 sector: "FMCG",             logo: "/images/incubatees/eat_pure_logo.jpeg" },
+  { name: "Kampuram",                sector: "Organic Products", logo: "/images/incubatees/kampuram_organic_air_freshner_logo.jpeg" },
+  { name: "Nest Craft Designs",      sector: "Design",           logo: "/images/incubatees/nestcraft_design_logo.jpeg" },
+  { name: "Kridinify Tech",          sector: "AI Tech",          logo: "/images/incubatees/kridinify_tech_logo.jpeg" },
+  { name: "Taiyo HR Solutions",      sector: "HR Tech",          logo: "/images/incubatees/taiyo_hr_solutions_logo.jpeg" },
+  { name: "Omni Global Tech",        sector: "IT Services",      logo: "/images/incubatees/omniglobal_techsolutions_logo.jpeg" },
+  { name: "My Event Factory",        sector: "Events",           logo: "/images/incubatees/myevent_factory_logo.jpeg" },
+  { name: "Tiden Technologies",      sector: "IT Services",      logo: "/images/incubatees/tiden_technologies_logo.jpeg" },
+  { name: "The Kamy",                sector: "Consumer Brand",   logo: "/images/incubatees/the_kamy_logo.jpeg" },
 ]
 
 export function RCIIFIncubatees() {
@@ -53,14 +53,13 @@ export function RCIIFIncubatees() {
               whileHover={{ y: -6 }}
               className="group relative bg-white/[0.03] border border-white/10 hover:border-green-500/40 rounded-2xl p-6 transition-colors duration-300 overflow-hidden"
             >
-              {/* Logo monogram */}
-              <div className="w-14 h-14 rounded-xl bg-green-500/10 border border-green-500/25 flex items-center justify-center mb-4 group-hover:bg-green-500/15 transition-colors">
-                <span
-                  className="font-bold text-green-400"
-                  style={{ fontFamily: "'Instrument Serif', serif", fontSize: '1.05rem' }}
-                >
-                  {inc.initials}
-                </span>
+              <div className="w-20 h-20 rounded-xl bg-white flex items-center justify-center mb-4 overflow-hidden p-2">
+                <img
+                  src={inc.logo}
+                  alt={`${inc.name} logo`}
+                  className="max-w-full max-h-full object-contain"
+                  loading="lazy"
+                />
               </div>
 
               <h3
@@ -77,7 +76,6 @@ export function RCIIFIncubatees() {
                 {inc.sector}
               </span>
 
-              {/* Hover green accent line */}
               <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-green-500 to-transparent origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
             </motion.div>
           ))}
