@@ -94,23 +94,12 @@ export default function Navbar() {
         }}
       >
         <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', padding: '14px 0' }}>
-            <div
-              style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: '9px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'linear-gradient(135deg, rgba(184,136,44,0.18), rgba(184,136,44,0.06))',
-                border: '1px solid rgba(184,136,44,0.3)',
-                boxShadow: '0 4px 16px -4px rgba(184,136,44,0.22)',
-                transition: 'transform 0.3s ease',
-              }}
-            >
-              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.05rem', color: 'var(--gold)', fontWeight: 500 }}>R</span>
-            </div>
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', padding: '10px 0' }}>
+            <img
+              src="/images/rciif-logo.png"
+              alt="RCIIF — We make IT happen"
+              style={{ height: '44px', width: 'auto', display: 'block', filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.35))' }}
+            />
             <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
               <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 600, fontSize: '15px', color: '#FDFBF7', letterSpacing: '0.02em' }}>RCIIF</span>
               <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7px', letterSpacing: '0.18em', color: 'rgba(253,251,247,0.35)', textTransform: 'uppercase', marginTop: '2px' }}>

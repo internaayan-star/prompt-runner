@@ -29,9 +29,9 @@ export default function PartnersStrip() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {ASSOCIATES.map((name, i) => (
+          {ASSOCIATES.map((a, i) => (
             <motion.div
-              key={name}
+              key={a.name}
               data-reveal="scale"
               data-delay={`${i * 80}`}
               initial={{ opacity: 0, y: 16 }}
@@ -39,11 +39,14 @@ export default function PartnersStrip() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
               whileHover={{ y: -4 }}
-              className="aspect-[3/2] rounded-2xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center hover:shadow-lg transition-shadow"
+              className="aspect-[3/2] rounded-2xl border border-gray-200 bg-white flex items-center justify-center p-4 hover:shadow-lg transition-shadow"
             >
-              <span className="font-[Instrument_Serif] text-2xl md:text-3xl font-bold text-[#0a0a0a]/70 tracking-wide">
-                {name}
-              </span>
+              <img
+                src={a.logo}
+                alt={a.name}
+                className="max-w-full max-h-full object-contain"
+                loading="lazy"
+              />
             </motion.div>
           ))}
         </div>
