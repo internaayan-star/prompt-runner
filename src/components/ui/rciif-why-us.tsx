@@ -135,7 +135,7 @@ function StatCounter({ icon, value, label, suffix, delay, tooltip, isAnimatedSat
 }) {
   const countRef = useRef(null)
   const isInView = useInView(countRef, { once: true })
-  const [hasAnimated, setHasAnimated] = useState(false)
+  const hasAnimatedRef = useRef(false)
   const [showTooltip, setShowTooltip] = useState(false)
   const [displayPct, setDisplayPct] = useState(0)
 
@@ -143,24 +143,21 @@ function StatCounter({ icon, value, label, suffix, delay, tooltip, isAnimatedSat
   const displayValue = useTransform(springValue, (latest) => Math.floor(latest))
 
   useEffect(() => {
-    if (isInView && !hasAnimated) {
-      springValue.set(value)
-      setHasAnimated(true)
-      if (isAnimatedSatisfaction) {
-        let start = 0
-        const target = 96.2
-        const duration = 2000
-        const step = 16
-        const increment = (target / duration) * step
-        const interval = setInterval(() => {
-          start += increment
-          if (start >= target) { start = target; clearInterval(interval) }
-          setDisplayPct(Math.round(start * 100) / 100)
-        }, step)
-        return () => clearInterval(interval)
-      }
-    }
-  }, [isInView, value, springValue, hasAnimated, isAnimatedSatisfaction])
+    if (!isInView || hasAnimatedRef.current) return
+    hasAnimatedRef.current = true
+    springValue.set(value)
+    if (!isAnimatedSatisfaction) return
+    let start = 0
+    const target = 96.2
+    const step = 16
+    const increment = (target / 2000) * step
+    const interval = setInterval(() => {
+      start += increment
+      if (start >= target) { start = target; clearInterval(interval) }
+      setDisplayPct(Math.round(start * 100) / 100)
+    }, step)
+    return () => clearInterval(interval)
+  }, [isInView, value, springValue, isAnimatedSatisfaction])
 
   return (
     <motion.div
