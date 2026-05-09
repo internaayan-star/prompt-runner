@@ -53,18 +53,15 @@ function TeamCard({ member, index }: { member: typeof TEAM[0]; index: number }) 
               className="relative mb-5"
             >
               <div
-                className="w-24 h-24 rounded-full flex items-center justify-center border-2"
-                style={{
-                  background: `${member.color}15`,
-                  borderColor: `${member.color}40`,
-                }}
+                className="w-24 h-24 rounded-full overflow-hidden border-2"
+                style={{ borderColor: `${member.color}55` }}
               >
-                <span
-                  className="font-[Instrument_Serif] font-bold text-2xl"
-                  style={{ color: member.color }}
-                >
-                  {member.initials}
-                </span>
+                <img
+                  src={member.photo}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
             </motion.div>
             <h3 className="font-[Instrument_Serif] font-bold text-[#0a0a0a] text-lg leading-tight mb-2">

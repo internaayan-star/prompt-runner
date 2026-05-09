@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const ASSOCIATES = [
-  "RSS",
-  "DPIIT",
-  "NIT",
-  "MSME",
-  "NASSCOM",
-  "MahaIT",
-  "SID",
-  "IIT",
+  { name: "Naman Angels India", logo: "/images/associates/naman_angels_india_foundation_logo.jpeg" },
+  { name: "IndusInd Bank", logo: "/images/associates/indusind_bank_logo.jpeg" },
+  { name: "EduGlobe", logo: "/images/associates/eduglobe_school_of_learning_logo.jpeg" },
+  { name: "Mumbai London College", logo: "/images/associates/london_college_logo.jpeg" },
+  { name: "LiveTech India", logo: "/images/associates/livetech_india_logo.jpeg" },
+  { name: "Starfeliks Media", logo: "/images/associates/starfeliks_las_estreyas_media_logo.jpeg" },
+  { name: "Ideabaaz", logo: "/images/associates/ideabaaz_logo.jpeg" },
+  { name: "Wish Care", logo: "/images/associates/wish_care_logo.jpeg" },
 ];
 
 export default function PartnersStrip() {
