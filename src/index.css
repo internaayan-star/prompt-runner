@@ -897,8 +897,7 @@ body::after {
   background-size: 180px 180px;
 }
 
-/* Custom cursor */
-*, *::before, *::after { cursor: none !important; }
+/* Custom cursor disabled - using native cursor */
 .cursor-dot {
   position: fixed; top: 0; left: 0;
   width: 7px; height: 7px;
