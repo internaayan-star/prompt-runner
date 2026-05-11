@@ -142,12 +142,12 @@ export default function AboutHeroAnimated() {
       </div>
 
       <style>{`
-        .card-founders { top: 70%; left: 15%; }
-        .card-mentors { top: 20%; right: 15%; }
-        .card-investors { top: 15%; left: 20%; }
-        .card-partners { top: 75%; right: 20%; }
+        .card-founders { top: 12%; left: 4%; }
+        .card-mentors { top: 12%; right: 4%; }
+        .card-investors { bottom: 12%; left: 4%; }
+        .card-partners { bottom: 12%; right: 4%; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1100px) {
           .ahero-card { display: none; }
           .ahero-circle { width: 400px !important; height: 400px !important; }
         }

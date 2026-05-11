@@ -145,7 +145,7 @@ export default function HeroOverlay() {
               marginBottom: '28px',
             }}
           >
-            DPIIT-recognised incubator empowering early-stage startups from Kharghar, Navi Mumbai. Backed by Rayat Shikshan Sanstha's 100-year legacy.
+            DPIIT-recognised incubator. Backed by a 100-year legacy.
           </p>
         </FadeIn>
 
