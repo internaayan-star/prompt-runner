@@ -24,7 +24,7 @@ export default function PageLayout({ children, title, description }: PageLayoutP
   }, [title, description]);
 
   return (
-    <div className="relative page-enter">
+    <div className="relative page-enter" style={{ overflowX: 'hidden' }}>
       <div className="top-rule" />
       <Navbar />
       <main>

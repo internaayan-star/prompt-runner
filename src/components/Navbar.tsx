@@ -149,21 +149,65 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <button className="md:hidden" onClick={() => setMobileOpen((o) => !o)} style={{ background: 'none', border: 'none', color: '#FDFBF7', padding: '8px' }}>
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          <button
+            className="md:hidden"
+            onClick={() => setMobileOpen((o) => !o)}
+            aria-label="Toggle menu"
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#FDFBF7',
+              padding: '12px',
+              minWidth: '44px',
+              minHeight: '44px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 110,
+              position: 'relative',
+            }}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
         {mobileOpen && (
           <div
+            className="md:hidden"
             style={{
-              background: 'rgba(8,8,8,0.97)',
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 100,
+              background: 'rgba(8,8,8,0.98)',
               backdropFilter: 'blur(24px)',
-              borderTop: '1px solid rgba(255,255,255,0.07)',
-              padding: '20px 24px 28px',
+              WebkitBackdropFilter: 'blur(24px)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              padding: '40px 32px',
               animation: 'slideDown 0.22s ease forwards',
             }}
           >
+            <button
+              onClick={() => setMobileOpen(false)}
+              aria-label="Close menu"
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                background: 'none',
+                border: 'none',
+                color: '#FDFBF7',
+                padding: '12px',
+                minWidth: '44px',
+                minHeight: '44px',
+              }}
+            >
+              <X size={24} />
+            </button>
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -171,14 +215,14 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 style={{
                   display: 'block',
-                  padding: '12px 0',
+                  padding: '20px 0 20px 16px',
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '10px',
-                  letterSpacing: '0.18em',
+                  fontSize: '16px',
+                  letterSpacing: '0.16em',
                   textTransform: 'uppercase',
-                  color: isActive(link.href) ? '#34d399' : 'rgba(253,251,247,0.55)',
+                  color: isActive(link.href) ? '#34d399' : 'rgba(253,251,247,0.75)',
                   textDecoration: 'none',
-                  borderBottom: '1px solid rgba(255,255,255,0.05)',
+                  borderLeft: isActive(link.href) ? '3px solid #34d399' : '3px solid transparent',
                 }}
               >
                 {link.label}
@@ -188,17 +232,19 @@ export default function Navbar() {
               to="/maverick/apply"
               onClick={() => setMobileOpen(false)}
               style={{
-                display: 'inline-block',
-                marginTop: '16px',
+                display: 'block',
+                textAlign: 'center',
+                marginTop: '32px',
                 fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '10px',
+                fontSize: '13px',
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 background: 'var(--gold)',
                 color: '#0C0B09',
-                padding: '10px 20px',
-                borderRadius: '8px',
+                padding: '16px',
+                borderRadius: '12px',
                 textDecoration: 'none',
+                fontWeight: 600,
               }}
             >
               Apply →

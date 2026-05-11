@@ -100,13 +100,13 @@ export default function HeroOverlay() {
         </FadeIn>
       </div>
 
-      <div className="relative z-10 px-6 md:px-12 lg:px-16 pb-24 lg:pb-32 max-w-4xl">
+      <div className="relative z-10 px-6 md:px-12 lg:px-16 pb-16 md:pb-24 lg:pb-32 max-w-4xl">
         <FadeIn delay={100} duration={900}>
           <h1
             style={{
               fontFamily: "'Space Grotesk', sans-serif",
               fontWeight: 700,
-              fontSize: 'clamp(3.2rem, 7vw, 6.5rem)',
+              fontSize: 'clamp(2.4rem, 7vw, 6.5rem)',
               letterSpacing: '-0.03em',
               lineHeight: 1.02,
               color: '#FDFBF7',
@@ -120,7 +120,7 @@ export default function HeroOverlay() {
               fontFamily: "'Playfair Display', serif",
               fontStyle: 'italic',
               fontWeight: 900,
-              fontSize: 'clamp(3.2rem, 7vw, 6.5rem)',
+              fontSize: 'clamp(2.4rem, 7vw, 6.5rem)',
               letterSpacing: '-0.025em',
               lineHeight: 1.02,
               margin: '0 0 28px 0',
@@ -138,7 +138,7 @@ export default function HeroOverlay() {
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: 'clamp(14px, 1.4vw, 17px)',
+              fontSize: 'clamp(13px, 1.4vw, 17px)',
               color: 'rgba(253,251,247,0.7)',
               lineHeight: 1.72,
               maxWidth: '46ch',
@@ -150,15 +150,15 @@ export default function HeroOverlay() {
         </FadeIn>
 
         <FadeIn delay={550} duration={900}>
-          <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', marginBottom: '32px' }}>
+          <div className="hero-stats-row" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', marginBottom: '32px' }}>
             {[
               { n: '12+', l: 'Startups' },
               { n: '₹12Cr+', l: 'Funding' },
               { n: 'Cohort 5', l: 'Now Open' },
             ].map((s) => (
               <div key={s.l}>
-                <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1.4rem', color: '#FDFBF7', letterSpacing: '-0.025em', lineHeight: 1 }}>{s.n}</div>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(253,251,247,0.38)', marginTop: '4px' }}>
+                <div className="hero-stat-n" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1.4rem', color: '#FDFBF7', letterSpacing: '-0.025em', lineHeight: 1 }}>{s.n}</div>
+                <div className="hero-stat-l" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(253,251,247,0.38)', marginTop: '4px' }}>
                   {s.l}
                 </div>
               </div>
@@ -167,13 +167,15 @@ export default function HeroOverlay() {
         </FadeIn>
 
         <FadeIn delay={700} duration={900}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
+          <div className="hero-cta-row" style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
             <MagneticButton>
               <a
                 href="/maverick/apply"
+                className="hero-cta"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
+                  justifyContent: 'center',
                   gap: '8px',
                   background: '#B8882C',
                   color: '#0C0B09',
@@ -195,9 +197,11 @@ export default function HeroOverlay() {
             <MagneticButton>
               <a
                 href="/ecosystem"
+                className="hero-cta"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
+                  justifyContent: 'center',
                   gap: '8px',
                   background: 'rgba(253,251,247,0.07)',
                   color: '#FDFBF7',
@@ -220,6 +224,16 @@ export default function HeroOverlay() {
             </MagneticButton>
           </div>
         </FadeIn>
+
+        <style>{`
+          @media (max-width: 640px) {
+            .hero-cta-row { flex-direction: column; gap: 12px !important; }
+            .hero-cta-row > * { width: 100%; }
+            .hero-cta { width: 100%; justify-content: center; }
+            .hero-stat-n { font-size: 1.2rem !important; }
+            .hero-stat-l { font-size: 7px !important; }
+          }
+        `}</style>
       </div>
 
       <div

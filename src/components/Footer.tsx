@@ -82,19 +82,21 @@ export default function Footer() {
 
           <form
             onSubmit={(e) => { e.preventDefault(); }}
-            className="flex w-full md:w-auto md:min-w-[420px] items-center gap-2 bg-white/5 border border-white/10 rounded-full p-1.5 hover:border-green-500/40 focus-within:border-green-500/60 transition-colors"
+            className="flex flex-col sm:flex-row w-full md:w-auto md:min-w-[420px] items-stretch sm:items-center gap-2 bg-white/5 border border-white/10 rounded-2xl sm:rounded-full p-2 sm:p-1.5 hover:border-green-500/40 focus-within:border-green-500/60 transition-colors"
           >
-            <Mail className="ml-3 w-4 h-4 text-white/40 shrink-0" />
-            <input
-              type="email"
-              required
-              placeholder="you@company.com"
-              aria-label="Email address"
-              className="flex-1 bg-transparent text-white placeholder-white/30 outline-none font-[Instrument_Sans] py-2 text-sm md:text-[15px]"
-            />
+            <div className="flex items-center flex-1 gap-2">
+              <Mail className="ml-3 w-4 h-4 text-white/40 shrink-0" />
+              <input
+                type="email"
+                required
+                placeholder="you@company.com"
+                aria-label="Email address"
+                className="flex-1 bg-transparent text-white placeholder-white/30 outline-none font-[Instrument_Sans] py-2 text-sm md:text-[15px] min-w-0"
+              />
+            </div>
             <button
               type="submit"
-              className="inline-flex items-center gap-1.5 bg-green-500 hover:bg-green-400 text-black font-semibold font-[Instrument_Sans] rounded-full px-4 md:px-5 py-2.5 text-sm transition-colors shrink-0"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-green-500 hover:bg-green-400 text-black font-semibold font-[Instrument_Sans] rounded-full px-4 md:px-5 py-2.5 text-sm transition-colors shrink-0"
             >
               Subscribe
               <ArrowRight className="w-4 h-4" />
