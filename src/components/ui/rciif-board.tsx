@@ -2,14 +2,14 @@
 import { motion } from "framer-motion"
 
 const board = [
-  { name: "Dr. Anil D. Patil", role: "Chairman", image: "/images/team/leader-1.jpg" },
-  { name: "Prof. Suresh Jadhav", role: "Vice Chairman", image: "/images/team/leader-2.jpg" },
-  { name: "Dr. Meera Kulkarni", role: "Director", image: "/images/team/leader-3.jpg" },
-  { name: "Mr. Rajesh Deshmukh", role: "Board Member", image: "/images/team/leader-4.jpg" },
-  { name: "Dr. Sandeep Gokhale", role: "Board Member", image: "/images/team/leader-5.jpg" },
-  { name: "Ms. Vandana Shah", role: "Board Member", image: "/images/team/leader-6.jpg" },
-  { name: "Mr. Prakash Joshi", role: "Advisor", image: "/images/team/leader-7.jpg" },
-  { name: "Dr. Nilesh Karanjekar", role: "Advisor", image: "/images/team/leader-8.jpg" },
+  { name: "Ramsheth Thakur", role: "Director — Entrepreneurship & Social Work", image: "/images/board/council_ramsheth_thakur.jpeg" },
+  { name: "Bhagirath Shinde", role: "Director — Legal Affairs", image: "/images/board/council_bhagirath_shinde.jpeg" },
+  { name: "Dr. G. D. Yadav", role: "Director — Research", image: "/images/board/council_gd_yadav.jpeg" },
+  { name: "Dr. N. B. Pasalker", role: "Education & Skilling", image: "/images/board/council_nb_pasalker.jpeg" },
+  { name: "Ajay Kumar Thakur", role: "Fundraising & Investment", image: "/images/board/council_ajay_thakur.jpeg" },
+  { name: "Vikas Deshmukh", role: "Retd. IAS — Legal Affairs", image: "/images/board/council_vikas_deshmukh.jpeg" },
+  { name: "Paresh Parekh", role: "Entrepreneurship & Technology", image: "/images/board/council_paresh_parekh.jpeg" },
+  { name: "Shubhada Nayak", role: "Research & Education", image: "/images/board/council_shubhada_nayak.jpeg" },
 ]
 
 export function RCIIFBoard() {
