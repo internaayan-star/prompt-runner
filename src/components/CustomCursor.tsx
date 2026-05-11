@@ -4,7 +4,12 @@ export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
 
+  const isTouchDevice =
+    typeof window !== 'undefined' &&
+    ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(max-width: 768px)').matches);
+
   useEffect(() => {
+    if (isTouchDevice) return;
     const dot = dotRef.current;
     const ring = ringRef.current;
     if (!dot || !ring) return;
@@ -63,6 +68,7 @@ export default function CustomCursor() {
     };
   }, []);
 
+  if (isTouchDevice) return null;
   return (
     <>
       <div ref={dotRef} className="cursor-dot" />
