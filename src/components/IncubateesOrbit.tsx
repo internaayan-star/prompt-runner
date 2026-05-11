@@ -84,13 +84,14 @@ export default function IncubateesOrbit() {
                 }}
               >
                 <div
-                  className="orbit-sat absolute rounded-full bg-white border flex items-center justify-center overflow-hidden"
+                  className="orbit-sat rounded-full bg-white border flex items-center justify-center overflow-hidden"
                   style={{
                     width: 'min(78px, 10vw)',
                     height: 'min(78px, 10vw)',
-                    transform: 'translate(min(310px, 40vw), -50%) translateY(50%)',
-                    marginTop: 'calc(min(-78px, -10vw) / 2)',
-                    marginLeft: 'calc(min(-78px, -10vw) / 2)',
+                    position: 'absolute',
+                    left: 'min(310px, 40vw)',
+                    top: 0,
+                    transform: 'translate(-50%, -50%)',
                     borderColor: 'rgba(184,136,44,0.2)',
                     boxShadow: '0 10px 40px rgba(0,0,0,0.06)',
                   }}
