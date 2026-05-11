@@ -30,7 +30,12 @@ export default function ScrollToTop() {
       type="button"
       aria-label="Scroll to top"
       onClick={handleClick}
-      className={`scroll-to-top ${visible ? 'visible' : ''}`}
+      className={`scroll-to-top ${visible ? 'visible' : ''} md:!w-12 md:!h-12 md:!bottom-8 md:!right-8`}
+      style={{
+        position: 'fixed',
+        bottom: 'calc(24px + env(safe-area-inset-bottom))',
+        right: '16px',
+      }}
     >
       <ArrowUp size={18} strokeWidth={2.2} />
     </button>

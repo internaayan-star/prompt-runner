@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const INCUBATEES = [
   '/images/incubatees/rezonanz_logo.jpeg',
@@ -18,14 +19,16 @@ const INCUBATEES = [
 
 export default function IncubateesOrbit() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
+    if (isMobile) return;
     const ctx = gsap.context(() => {
       gsap.to('.orbit-ring', { rotation: '+=360', duration: 60, repeat: -1, ease: 'none' });
       gsap.to('.orbit-sat', { rotation: '-=360', duration: 60, repeat: -1, ease: 'none' });
     }, containerRef);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section className="w-full py-16 px-4 overflow-hidden" style={{ background: '#F8F5F0' }}>
