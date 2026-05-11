@@ -2,14 +2,14 @@
 import { motion } from "framer-motion"
 
 const board = [
-  { name: "Dr. Anil D. Patil", role: "Chairman", image: "/images/team/leader-1.jpg" },
-  { name: "Prof. Suresh Jadhav", role: "Vice Chairman", image: "/images/team/leader-2.jpg" },
-  { name: "Dr. Meera Kulkarni", role: "Director", image: "/images/team/leader-3.jpg" },
-  { name: "Mr. Rajesh Deshmukh", role: "Board Member", image: "/images/team/leader-4.jpg" },
-  { name: "Dr. Sandeep Gokhale", role: "Board Member", image: "/images/team/leader-5.jpg" },
-  { name: "Ms. Vandana Shah", role: "Board Member", image: "/images/team/leader-6.jpg" },
-  { name: "Mr. Prakash Joshi", role: "Advisor", image: "/images/team/leader-7.jpg" },
-  { name: "Dr. Nilesh Karanjekar", role: "Advisor", image: "/images/team/leader-8.jpg" },
+  { name: "Ramsheth Thakur", role: "Director — Entrepreneurship & Social Work", image: "/images/board/council_ramsheth_thakur.jpeg" },
+  { name: "Bhagirath Shinde", role: "Director — Legal Affairs", image: "/images/board/council_bhagirath_shinde.jpeg" },
+  { name: "Dr. G. D. Yadav", role: "Director — Research", image: "/images/board/council_gd_yadav.jpeg" },
+  { name: "Dr. N. B. Pasalker", role: "Education & Skilling", image: "/images/board/council_nb_pasalker.jpeg" },
+  { name: "Ajay Kumar Thakur", role: "Fundraising & Investment", image: "/images/board/council_ajay_thakur.jpeg" },
+  { name: "Vikas Deshmukh", role: "Retd. IAS — Legal Affairs", image: "/images/board/council_vikas_deshmukh.jpeg" },
+  { name: "Paresh Parekh", role: "Entrepreneurship & Technology", image: "/images/board/council_paresh_parekh.jpeg" },
+  { name: "Shubhada Nayak", role: "Research & Education", image: "/images/board/council_shubhada_nayak.jpeg" },
 ]
 
 export function RCIIFBoard() {
@@ -50,13 +50,13 @@ export function RCIIFBoard() {
               whileHover={{ y: -6 }}
               className="group bg-white/[0.03] border border-white/10 hover:border-green-500/40 rounded-2xl overflow-hidden transition-colors"
             >
-              <div className="aspect-square overflow-hidden bg-gradient-to-br from-green-900/30 via-[#0f0f0f] to-[#0a0a0a] flex items-center justify-center">
-                <div
-                  className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center border border-green-500/30 bg-green-500/10 text-green-400 group-hover:scale-105 group-hover:border-green-500/60 transition-all duration-500"
-                  style={{ fontFamily: "'Instrument Serif', serif", fontSize: "clamp(22px, 2.6vw, 30px)", letterSpacing: "0.04em" }}
-                >
-                  {m.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
-                </div>
+              <div className="aspect-square overflow-hidden bg-gradient-to-br from-green-900/30 via-[#0f0f0f] to-[#0a0a0a]">
+                <img
+                  src={m.image}
+                  alt={m.name}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
               <div className="p-4 text-center flex flex-col justify-center" style={{ minHeight: "84px" }}>
                 <h3 className="text-white text-sm font-bold leading-tight" style={{ fontFamily: "'Instrument Serif', serif" }}>
