@@ -90,19 +90,18 @@ export default function IncubateesOrbit() {
 
         {/* Center sun */}
         <div
-          className="absolute rounded-full bg-white flex items-center justify-center z-50"
+          className="absolute rounded-full bg-white flex items-center justify-center z-50 p-6"
           style={{
             width: 'min(250px, 25vw)',
             height: 'min(250px, 25vw)',
             boxShadow: '0 30px 90px rgba(28,58,46,0.08), 0 0 0 1px rgba(0,0,0,0.04)',
           }}
         >
-          <span
-            className="font-bold text-center"
-            style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(14px, 2.5vw, 24px)', color: '#1C3A2E' }}
-          >
-            RCIIF
-          </span>
+          <img
+            src="/images/rciif-logo.png"
+            alt="RCIIF"
+            className="w-full h-full object-contain"
+          />
         </div>
 
         {/* Orbit rings */}
