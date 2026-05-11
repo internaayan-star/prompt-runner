@@ -47,6 +47,29 @@ export default function IncubateesOrbit() {
         </h2>
       </div>
 
+      {isMobile ? (
+        <div className="mx-auto max-w-md px-2">
+          <div className="flex justify-center mb-6">
+            <div
+              className="rounded-full bg-white flex items-center justify-center p-4"
+              style={{ width: 120, height: 120, boxShadow: '0 20px 60px rgba(28,58,46,0.10), 0 0 0 1px rgba(0,0,0,0.04)' }}
+            >
+              <img src="/images/rciif-logo.png" alt="RCIIF" className="w-full h-full object-contain" />
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-3">
+            {INCUBATEES.map((img, i) => (
+              <div
+                key={i}
+                className="aspect-square rounded-2xl bg-white border flex items-center justify-center p-2"
+                style={{ borderColor: 'rgba(184,136,44,0.2)', boxShadow: '0 6px 20px rgba(0,0,0,0.05)' }}
+              >
+                <img src={img} alt="" className="w-[85%] h-[85%] object-contain" loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
       <div
         ref={containerRef}
         className="relative mx-auto flex items-center justify-center"
